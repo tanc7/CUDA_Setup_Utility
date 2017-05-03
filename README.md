@@ -1,11 +1,22 @@
-# CUDA_Setup_Utility
+# The NVidia/CUDA GPU Setup utility for Kali Linux
 # Purpose
 This is my first attempt to automate the frustrating NVidia Driver Install for Kali Linux Versions 4.6 to 4.9, based upon this guide:
 https://www.kali.org/news/cloud-cracking-with-cuda-gpu/
 
-Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers installable. 
+Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers installable. The most recent event is the upgradable Kali Linux 4.9, where the installation process of blacklisting nouveau has been incorporated into the upgrade and repo packages.
 
-Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat now. However, the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.
+Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat now. 
+However, the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.
+
+Note that you should be a relatively experienced user of Linux before considering installing proprietary video drivers. Help is fairly lacking: https://forums.geforce.com/default/topic/991448/geforce-drivers/a-working-way-to-make-gpu-optimization-on-kali-linux-2016-2-possible-really-/
+
+Here is a relatively up-to-date guide that the recent dist-upgrade of Kali Linux has incorporated: https://wheresmykeyboard.com/2016/06/installing-nvidia-driver-kali-linux-2016-1-rolling/
+
+And here is a excerpt from the previous post(profanity alert):
+
+..."really, just about everything, to use the lovely benefits GPU acceleration provides go to Nvidia's website first to get instructions on how to install the drivers, or they of course just use apt-get install ; Both of which generally end with a broken GUI, confusing Xconfig errors, and many expletives being shouted.
+Not to knock Nvidia, but TWICE I had set up appointments with their supposed Linux experts, and even after I asked them very specific questions on how to make my GTX960M card and my (very respectably looking customed up) Kali system make GPU optimized bahbees together, they still just shrugged their shoulders and directed me to their seriously non-consumer-friendly and very wrong instructions that made me and many others frothing at the mouth, jaw-on-the-floor LIVID angry considering that their FAQ on how to do it makes your system fundamentally unusable after only a few clicks and button presses....
+WELL, here, my friends, is a link to the only tutorial out of the "...
 
 
 # Initial Setup and Installation
@@ -18,7 +29,7 @@ Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat 
 
 >>4. python setup.py
 
-After that, you can run CUDA_setup_utility.py from the command line. You really need to be able to run from the command line, there is a phase in the installation where the display "breaks" (it's really GNOME's issue though). At that point, you should be able to use your TTY terminal to access the APT repos and install XFCE as a alternative Desktop Manager. 
+After that, you can run CUDA_setup_utility.py from the command line. You really need to be able to use the command line comfortably, there is a phase in the installation where the display "breaks" (it's really GNOME's issue though). At that point, you should be able to use your TTY terminal to access the APT repos and install XFCE as a alternative Desktop Manager. 
 
 # How do you know that the NVidia Drivers Work?
 
