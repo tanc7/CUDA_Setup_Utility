@@ -6,10 +6,10 @@ https://www.kali.org/news/cloud-cracking-with-cuda-gpu/
 CUDA Setup Utility is a Python program designed to run in the TTY terminal (CTRL + ALT + F1 to F6) during the moment where the installation process breaks your display and you can only rely on your knowledge of terminal commands and access of the APT repos to continue.
 
 **Requirements of the User**
-1. Be reasonably comfortable in running commands from the terminal
-2. Be able to diagnose and reverse system-breaking commands that commonly haunt users of Kali Linux due to System-Level Root
-3. Time and patience. Oh, and that you backed up your hard disks!
-4. A reliable internet connection. For example, I go to UNLV. UNLV's Wi-Fi sucks. I wouldn't trust being able to retrieve all of the repo data in the event I break my install, at UNLV. I should probably download backup copies of my default display settings at home, and then go to UNLV.
+1. *Be reasonably comfortable in running commands from the terminal*
+2. *Be able to diagnose and reverse system-breaking commands* that commonly haunt users of Kali Linux due to System-Level Root
+3. *Time and patience*. Oh, and that you backed up your hard disks!
+4. *A reliable internet connection*. For example, I go to UNLV. UNLV's Wi-Fi sucks. I wouldn't trust being able to retrieve all of the repo data in the event I break my install, at UNLV. I should probably download backup copies of my default display settings at home, and then go to UNLV.
 
 # Initial Setup and Installation
 
