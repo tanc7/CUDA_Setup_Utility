@@ -12,6 +12,7 @@ import time
 print colored('NVidia Driver and CUDA Setup Utility\nBy Chang Tan Lister\nwww.github.com/tanc7','cyan',attrs=['bold'])
 
 def first_reboot_cycle(): #apt-get update and dist-upgrade
+    print colored('FIRST reboot cycle: Updating APT and Linux Distro','cyan',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with updating Linux: "))
     if continue_question == "CONTINUE":
         print colored('[*] Updating APT Repo','yellow',attrs=['bold'])
@@ -19,14 +20,16 @@ def first_reboot_cycle(): #apt-get update and dist-upgrade
         print colored('[*] Performing Distribution Upgrade, please do not interrupt!','yellow',attrs=['bold'])
         os.system('sudo apt-get dist-upgrade -y')
         print colored('[+] Distro Update and Upgrade Completed, please reboot your machine','green',attrs=['bold'])
-    elif continue_question == "0":
+    elif continue_question == "0" or KeyboardInterrupt:
         main()
+
     else:
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
         first_reboot_cycle()
     return
 
 def second_reboot_cycle(): #blacklist Nouveau Kernel Modules, update initramfs, and then reboot
+    print colored('SECOND reboot cycle: Blacklisting stock OS Open-Source Drivers','red',attrs=['bold'])
     print colored('[!] Warning! After this reboot, your display will NOT WORK and you will have to rely on running this from the TTY terminals (CTRL + ALT + 1 to 6)','red',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with blacklisting Nouveau and modifying Kernel: "))
     if continue_question == "CONTINUE":
@@ -36,7 +39,7 @@ def second_reboot_cycle(): #blacklist Nouveau Kernel Modules, update initramfs, 
         os.system('echo -e "blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off" > /etc/modprobe.d/blacklist-nouveau.conf')
         print colored('[+] Rebooting System','green',attrs=['bold'])
         os.system('update-initramfs -u && reboot')
-    elif continue_question == "0":
+    elif continue_question == "0" or KeyboardInterrupt:
         main()
     else:
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
@@ -44,6 +47,7 @@ def second_reboot_cycle(): #blacklist Nouveau Kernel Modules, update initramfs, 
     return
 
 def third_reboot_cycle(): # Install NVidia Drivers, OCL libraries, and CUDA Toolkits
+    print colored('THIRD reboot cycle: Installing NVIDIA drivers, OCL Libraries, CUDA Toolkit','yellow',attrs=['bold'])
     print colored('[*] Grepping for any modules running that says nouveau','yellow',attrs=['bold'])
     os.system('lsmod | grep -i nouveau')
     print colored('[!] Do you see anything that says Nouveau? If you do, then first kill those processes before proceeding','red',attrs=['bold'])
@@ -54,7 +58,7 @@ def third_reboot_cycle(): # Install NVidia Drivers, OCL libraries, and CUDA Tool
         print colored('[*] Installing NVidia Drivers, OpenCL Libraries, and NVIDIA CUDA Toolkit','yellow',attrs=['bold'])
         os.system('sudo apt-get install -y ocl-icd-libopencl1 nvidia-driver nvidia-cuda-toolkit')
         print colored('[+] Installation Complete, please reboot your machine one more time and dont freak out if the GNOME login screen crashes (access me through TTY)','green',attrs=['bold'])
-    elif continue_question == "0":
+    elif continue_question == "0" or KeyboardInterrupt:
         main()
     else:
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
@@ -62,6 +66,7 @@ def third_reboot_cycle(): # Install NVidia Drivers, OCL libraries, and CUDA Tool
     return
 
 def fourth_reboot_cycle(): # Benchmark tests
+    print colored('Fourth reboot cycle: Benchmarking and testing installation','green',attrs=['bold'])
     print colored('Before you flip out or anything thinking your system broke, lets run some tests to see if the drivers are working properly','red',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with benchmarking: "))
     if continue_question == "CONTINUE":
@@ -74,7 +79,7 @@ def fourth_reboot_cycle(): # Benchmark tests
         os.system('hashcat -b')
         print colored('[+] Benchmarking complete, please go back to Main Menu and type DIAGNOSTICS to fix your screen!','green',attrs=['bold'])
         main()
-    elif continue_question == "0":
+    elif continue_question == "0" or KeyboardInterrupt:
         main()
     else:
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
@@ -153,6 +158,7 @@ def problem_three():
     return
 
 def DIAGNOSTICS():
+    print colored('DIAGNOSTICS: Fixing Display errors and other matters','magenta',attrs=['bold'])
     opt_List = [
         '\n\t#0. Return to Main Menu',
         "#1. GNOME Desktop: The Boot/Login Screen shows 'Oh no! Something has gone wrong' with a sad computer and a logout button",
@@ -193,6 +199,8 @@ def install_hashcat_utils():
     return
 
 def REVERT():
+    print colored('REVERT: Uninstall all NVIDIA drivers, go back to Nouveau Open-Source Drivers','red',attrs=['bold'])
+
     print """
     The REVERT back to open-source process is followed by these posts: https://askubuntu.com/questions/189347/how-can-i-uninstall-nvidia-proprietary-drivers
 
@@ -212,7 +220,7 @@ def REVERT():
         print colored('[*] Moving xorg config file so a new one can be made','yellow',attrs=['bold'])
         os.system('mv /etc/X11/xorg.conf /etc/X11/xorg.conf.save')
         print colored('[+] Fully reverted. Please reboot now','green',attrs=['bold'])
-    elif continue_question == "0":
+    elif continue_question == "0" or KeyboardInterrupt:
         main()
     else:
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
@@ -265,4 +273,5 @@ def main():
     else:
         print 'You have entered a invalid option'
         main()
+
 main()
