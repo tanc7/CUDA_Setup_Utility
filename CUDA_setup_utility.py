@@ -5,6 +5,7 @@ import socket
 import operator
 import sys
 from termcolor import colored
+import time
 
 # purpose to automate (for the most part ) the installation of proper NVidia drivers in a interactive menu
 # Know that it requires Python termcolors module
@@ -191,6 +192,33 @@ def install_hashcat_utils():
     main()
     return
 
+def REVERT():
+    print """
+    The REVERT back to open-source process is followed by these posts: https://askubuntu.com/questions/189347/how-can-i-uninstall-nvidia-proprietary-drivers
+
+    Type CONTINUE to proceed
+    """
+    continue_question = str(raw_input("Type CONTINUE to proceed with REVERSING the NVIDIA driver installation: "))
+    if continue_question == "CONTINUE":
+        print colored('[+] Listing NVidia packages','green',attrs=['bold'])
+        os.system('dpkg --get-selections | grep nvidia')
+        print colored('[*] USER INTERACTION REQUIRED, need you to comment out the line that blacklisted nouveau in 5 seconds','yellow',attrs=['bold'])
+        time.sleep(5)
+        os.system('nano /etc/modprobe.d/blacklist-nouveau.conf')
+        print colored('[*] Purging NVIDIA drivers','yellow',attrs=['bold'])
+        os.system('sudo apt-get purge nvidia*')
+        print colored('[*] Installing open-source nouveau drivers','yellow',attrs=['bold'])
+        os.system('sudo apt-get install xserver-xorg-video-nouveau')
+        print colored('[*] Moving xorg config file so a new one can be made','yellow',attrs=['bold'])
+        os.system('mv /etc/X11/xorg.conf /etc/X11/xorg.conf.save')
+        print colored('[+] Fully reverted. Please reboot now','green',attrs=['bold'])
+    elif continue_question == "0":
+        main()
+    else:
+        print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
+        REVERT()
+    return
+    return
 def main():
     opt_List = [
         '\n\t#0. Exit Program',
@@ -198,8 +226,9 @@ def main():
         '#2. SECOND-REBOOT CYCLE, Check for and blacklist Nouveau Kernel Modules, update initramfs, and then reboot',
         '#3. THIRD-REBOOT CYCLE, Install NVidia Drivers, OCL libraries, and CUDA Toolkits',
         '#4. FOURTH-REBOOT CYCLE, Benchmark tests. Run this in your TTY prompt if you have issues like Sad Computer on White Screen for GNOME Desktop Manager',
-        '#5. FINAL PART, Install hashcat-utils automatically from github',
-        '#DIAGNOSTICS. Troubleshoot a failed installation attempt'
+        '#5. FINAL PART, Install hashcat-utils automatically from github after everything is working including desktop',
+        '#DIAGNOSTICS. Troubleshoot a failed installation attempt or display errors',
+        '#REVERT. Revert the changes that were made and reinstall Open Source Drivers, erasing all of the effort you have done to this point'
     ]
 
     print ("\n\t".join(opt_List))
@@ -229,6 +258,10 @@ def main():
     elif opt_Choice == "DIAGNOSTICS":
         os.system('clear')
         DIAGNOSTICS()
+        main()
+    elif opt_Choice == "REVERT":
+        os.system('clear')
+        REVERT()
         main()
     else:
         print 'You have entered a invalid option'
