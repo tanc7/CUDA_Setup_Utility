@@ -36,3 +36,25 @@ After that, you can run CUDA_setup_utility.py from the command line. You really 
 In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" that will list whether or not your video card is recognized. If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
 
 In fact, even without a working desktop environment you should be able to run hashcat with GPU acceleration. As of April 30th 2017, hashcat is now merged together with cudahashcat and oclhashcat. Furthermore, you will need the hashcat-utils, by which I have included a auto-installer in this program for you.
+
+# FAQ
+
+>#1. After I installed the drivers, my screen crashes to a white screen with a sad computer and a logout button with the message "Oh no...."
+
+This is where the display for GNOME Desktop Manager breaks. As covered in the python script, you have two choices...
+
+      1. Fix GNOME Desktop Manager
+      2. Replace GDM with another Desktop Manager like LightDM or XFCE
+
+More than likely, your NVidia drivers are PROPERLY installed. More suggested fixes are covered in the DIAGNOSTICS part of the setup utility.
+
+>#2. I use a alternative Desktop Manager, and it crashes to a black screen after I wake up my laptop from screenlock
+
+Thats a bug. A bug that has not been resolved by the devs of light-locker for many years. My solution is...
+
+      1. Uninstall light-locker
+      2. Replace light-locker with GNOME screensaver
+
+>#3. Hashcat tells me that my aircrack-ng .cap to HCCAP file is "outdated".
+
+You need to use the new HCCAPX standard, available via the hashcat-utils toolkit. A auto-installer is included in the CUDA setup utility. From the main menu, press #5.
