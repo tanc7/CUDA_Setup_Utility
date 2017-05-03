@@ -8,7 +8,7 @@ Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers in
 Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat now. 
 However, the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.
 
-Note that you should be a relatively experienced user of Linux before considering installing proprietary video drivers. Help is fairly lacking: https://forums.geforce.com/default/topic/991448/geforce-drivers/a-working-way-to-make-gpu-optimization-on-kali-linux-2016-2-possible-really-/
+**Note that you should be a relatively experienced user of Linux before considering installing proprietary video drivers. Help is fairly lacking**: https://forums.geforce.com/default/topic/991448/geforce-drivers/a-working-way-to-make-gpu-optimization-on-kali-linux-2016-2-possible-really-/
 
 Here is a relatively up-to-date guide that the recent dist-upgrade of Kali Linux has incorporated: https://wheresmykeyboard.com/2016/06/installing-nvidia-driver-kali-linux-2016-1-rolling/
 
@@ -29,7 +29,7 @@ WELL, here, my friends, is a link to the only tutorial out of the "...
 
 >>4. python setup.py
 
-After that, you can run CUDA_setup_utility.py from the command line. You really need to be able to use the command line comfortably, there is a phase in the installation where the display "breaks" (it's really GNOME's issue though). At that point, you should be able to use your TTY terminal to access the APT repos and install XFCE as a alternative Desktop Manager. 
+After that, you can run CUDA_setup_utility.py from the command line. **You really need to be able to use the command line comfortably, there is a phase in the installation where the display "breaks"** (it's really GNOME's issue though). At that point, you should **be able to use your TTY terminal to access the APT repos** and install XFCE as a alternative Desktop Manager. 
 
 # How do you know that the NVidia Drivers Work?
 
