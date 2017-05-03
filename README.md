@@ -1,4 +1,4 @@
-# The NVidia/CUDA GPU Setup utility for Kali Linux
+# The NVIDIA CUDA GPU Setup utility for Kali Linux
 # Purpose
 This is my first attempt to automate the frustrating NVidia Driver Install for Kali Linux Versions 4.6 to 4.9, based upon this guide:
 https://www.kali.org/news/cloud-cracking-with-cuda-gpu/
