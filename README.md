@@ -11,7 +11,30 @@ CUDA Setup Utility is a Python program designed to run in the TTY terminal (CTRL
 3. Time and patience. Oh, and that you backed up your hard disks!
 4. A reliable internet connection. For example, I go to UNLV. UNLV's Wi-Fi sucks. I wouldn't trust being able to retrieve all of the repo data in the event I break my install, at UNLV. I should probably download backup copies of my default display settings at home, and then go to UNLV.
 
+# Initial Setup and Installation
+
+>>1. cd /tmp
+
+>>2. git clone https://github.com/tanc7/CUDA_Setup_Utility
+
+>>3. cd CUDA_Setup_Utility
+
+>>4. python setup.py
+
+After that, you can run CUDA_setup_utility.py from the command line. **You really need to be able to use the command line comfortably, there is a phase in the installation where the display "breaks"** (it's really GNOME's issue though). At that point, you should **be able to use your TTY terminal to access the APT repos** and install XFCE as a alternative Desktop Manager. 
+
 Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers installable. The most recent event is the upgradable Kali Linux 4.9, where the installation process of blacklisting nouveau has been incorporated into the upgrade and repo packages.
+
+# How do you know that the NVidia Drivers Work?
+
+In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" 
+that will list whether or not your video card is recognized. 
+
+***If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup***. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
+
+In fact, even **without a working desktop environment you should be able to run hashcat with GPU acceleration**. 
+
+As of April 30th 2017, hashcat is now merged together with cudahashcat and oclhashcat. Furthermore, you will need the hashcat-utils, by which I have included a auto-installer in this program for you.
 
 Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat now. 
 However, **the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.**
@@ -26,29 +49,6 @@ And here is a excerpt from the previous post(profanity alert):
 Not to knock Nvidia, but TWICE I had set up appointments with their supposed Linux experts, and even after I asked them very specific questions on how to make my GTX960M card and my (very respectably looking customed up) Kali system make GPU optimized bahbees together, they still just shrugged their shoulders and directed me to their seriously non-consumer-friendly and very wrong instructions that made me and many others frothing at the mouth, jaw-on-the-floor LIVID angry considering that their FAQ on how to do it makes your system fundamentally unusable after only a few clicks and button presses....
 WELL, here, my friends, is a link to the only tutorial out of the "...*
 
-
-# Initial Setup and Installation
-
->>1. cd /tmp
-
->>2. git clone https://github.com/tanc7/CUDA_Setup_Utility
-
->>3. cd CUDA_Setup_Utility
-
->>4. python setup.py
-
-After that, you can run CUDA_setup_utility.py from the command line. **You really need to be able to use the command line comfortably, there is a phase in the installation where the display "breaks"** (it's really GNOME's issue though). At that point, you should **be able to use your TTY terminal to access the APT repos** and install XFCE as a alternative Desktop Manager. 
-
-# How do you know that the NVidia Drivers Work?
-
-In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" 
-that will list whether or not your video card is recognized. 
-
-***If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup***. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
-
-In fact, even **without a working desktop environment you should be able to run hashcat with GPU acceleration**. 
-
-As of April 30th 2017, hashcat is now merged together with cudahashcat and oclhashcat. Furthermore, you will need the hashcat-utils, by which I have included a auto-installer in this program for you.
 
 # FAQ
 
