@@ -6,7 +6,7 @@ https://www.kali.org/news/cloud-cracking-with-cuda-gpu/
 Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers installable. The most recent event is the upgradable Kali Linux 4.9, where the installation process of blacklisting nouveau has been incorporated into the upgrade and repo packages.
 
 Out of the box, my Laptop with a GeForce 840M from 2013, is able to run hashcat now. 
-However, the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.
+However, **the GNOME Desktop Manager breaks, forcing me to resort to LightDM and XFCE as a alternative.**
 
 **Note that you should be a relatively experienced user of Linux before considering installing proprietary video drivers. Help is fairly lacking**: https://forums.geforce.com/default/topic/991448/geforce-drivers/a-working-way-to-make-gpu-optimization-on-kali-linux-2016-2-possible-really-/
 
@@ -14,9 +14,9 @@ Here is a relatively up-to-date guide that the recent dist-upgrade of Kali Linux
 
 And here is a excerpt from the previous post(profanity alert):
 
-..."really, just about everything, to use the lovely benefits GPU acceleration provides go to Nvidia's website first to get instructions on how to install the drivers, or they of course just use apt-get install ; Both of which generally end with a broken GUI, confusing Xconfig errors, and many expletives being shouted.
+*..."really, just about everything, to use the lovely benefits GPU acceleration provides go to Nvidia's website first to get instructions on how to install the drivers, or they of course just use apt-get install ; Both of which generally end with a broken GUI, confusing Xconfig errors, and many expletives being shouted.
 Not to knock Nvidia, but TWICE I had set up appointments with their supposed Linux experts, and even after I asked them very specific questions on how to make my GTX960M card and my (very respectably looking customed up) Kali system make GPU optimized bahbees together, they still just shrugged their shoulders and directed me to their seriously non-consumer-friendly and very wrong instructions that made me and many others frothing at the mouth, jaw-on-the-floor LIVID angry considering that their FAQ on how to do it makes your system fundamentally unusable after only a few clicks and button presses....
-WELL, here, my friends, is a link to the only tutorial out of the "...
+WELL, here, my friends, is a link to the only tutorial out of the "...*
 
 
 # Initial Setup and Installation
@@ -33,9 +33,14 @@ After that, you can run CUDA_setup_utility.py from the command line. **You reall
 
 # How do you know that the NVidia Drivers Work?
 
-In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" that will list whether or not your video card is recognized. If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
+In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" 
+that will list whether or not your video card is recognized. 
 
-In fact, even without a working desktop environment you should be able to run hashcat with GPU acceleration. As of April 30th 2017, hashcat is now merged together with cudahashcat and oclhashcat. Furthermore, you will need the hashcat-utils, by which I have included a auto-installer in this program for you.
+***If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup***. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
+
+In fact, even **without a working desktop environment you should be able to run hashcat with GPU acceleration**. 
+
+As of April 30th 2017, hashcat is now merged together with cudahashcat and oclhashcat. Furthermore, you will need the hashcat-utils, by which I have included a auto-installer in this program for you.
 
 # FAQ
 
