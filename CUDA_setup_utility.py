@@ -218,7 +218,6 @@ def REVERT():
         print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
         REVERT()
     return
-    return
 def main():
     opt_List = [
         '\n\t#0. Exit Program',
