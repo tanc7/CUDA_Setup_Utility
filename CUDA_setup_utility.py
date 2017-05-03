@@ -198,7 +198,7 @@ def main():
         '#2. SECOND-REBOOT CYCLE, Check for and blacklist Nouveau Kernel Modules, update initramfs, and then reboot',
         '#3. THIRD-REBOOT CYCLE, Install NVidia Drivers, OCL libraries, and CUDA Toolkits',
         '#4. FOURTH-REBOOT CYCLE, Benchmark tests. Run this in your TTY prompt if you have issues like Sad Computer on White Screen for GNOME Desktop Manager',
-        '#5. FINAL PART, Install hashcat-utils automatically from github'
+        '#5. FINAL PART, Install hashcat-utils automatically from github',
         '#DIAGNOSTICS. Troubleshoot a failed installation attempt'
     ]
 
