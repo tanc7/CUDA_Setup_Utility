@@ -5,6 +5,22 @@ https://www.kali.org/news/cloud-cracking-with-cuda-gpu/
 
 CUDA Setup Utility is a Python program designed to run in the TTY terminal (CTRL + ALT + F1 to F6) during the moment where the installation process breaks your display and you can only rely on your knowledge of terminal commands and access of the APT repos to continue.
 
+Demo View as of May 2nd, 2017:
+NVidia Driver and CUDA Setup Utility
+By Chang Tan Lister
+www.github.com/tanc7
+
+	#0. Exit Program
+	#1. FIRST-REBOOT CYCLE, apt-get update and dist-upgrade
+	#2. SECOND-REBOOT CYCLE, Check for and blacklist Nouveau Kernel Modules, update initramfs, and then reboot
+	#3. THIRD-REBOOT CYCLE, Install NVidia Drivers, OCL libraries, and CUDA Toolkits
+	#4. FOURTH-REBOOT CYCLE, Benchmark tests. Run this in your TTY prompt if you have issues like Sad Computer on White Screen for GNOME Desktop Manager
+	#5. FINAL PART, Install hashcat-utils automatically from github after everything is working including desktop
+	#DIAGNOSTICS. Troubleshoot a failed installation attempt or display errors
+	#REVERT. Revert the changes that were made and reinstall Open Source Drivers, erasing all of the effort you have done to this point
+Enter a OPTION: 
+
+
 **Requirements of the User**
 1. *Be reasonably comfortable in running commands from the terminal*
 2. *Be able to diagnose and reverse system-breaking commands* that commonly haunt users of Kali Linux due to System-Level Root
