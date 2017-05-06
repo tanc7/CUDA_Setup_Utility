@@ -3,12 +3,19 @@
 However, cannot determine true power because the performance is being throttled due to a underpowered PSU. The driver is throttling the performance of the rig until I can finally get my 500W Gold Standard 80+ PSU in the mail next monday. Right now its using a stock 290W power supply that came with the server. The NVIDIA-SMI probably detects inadequate power supply so its limiting its performance to prevent core damage
 
 Average Power Consumption: 67W (out of 75W advertised "full-tilt")
+
 Average Temperature: 65 to 80 degrees celsius
+
 Cuda Core Utilization: 93 to 100%
+
 Max Clock : 1700mhz range
+
 Max Memory Clock : 3500mhz range.
+
 Maximum Hashcat WPA2-PSK: 120+ Kilohashes/Second (120,000 passwords tried per second)
+
 Average Hashcat WPA2-PSK: 90 Kh/s range
+
 Size of file: Approximately 14 GB of passwords (almost 1.2 billion passwords)
 
 # gpu   pwr  temp    sm   mem   enc   dec  mclk  pclk
