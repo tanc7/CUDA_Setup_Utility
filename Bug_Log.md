@@ -11,3 +11,9 @@ Furthermore you do not want to manually install NVIDIA's proprietary drivers. th
 # Proposed solution
 
 For REBOOT LOOP #2 you can change the blacklist command into a bash script instead of a python script, preventing the syntax -e error from popping up.
+
+Doesnt work. Why not just make a file to write to? All it does is write 3 lines. echo -e "blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off" > /etc/modprobe.d/blacklist-nouveau.conf
+
+LINE 1: blacklist nouveau
+LINE 2: options nouveau modeset=0
+LINE 3: alias nouveau off
