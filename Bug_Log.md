@@ -58,6 +58,38 @@ Size of file: Approximately 14 GB of passwords (almost 1.2 billion passwords)
     0    59    72   100     2     0     0  3504  1708
     0    67    75   100     1     0     0  3504  1708
 
+# Official Technical and Safety Specs by NVIDIA: http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-1050-ti/specifications
+
+GPU Engine Specs
+CUDA Cores
+768
+Graphics Clock (MHz)
+1290
+Processor Clock (MHz)
+1392
+Graphics Performance
+high-6747
+Memory Specs
+Memory Clock
+7 Gbps
+Standard Memory Config
+4 GB
+Memory Interface
+GDDR5
+Memory Interface Width
+128-bit
+Memory Bandwidth (GB/sec)
+112
+Feature Support
+Supported Technologies
+CUDA, 3D Vision, PhysX, NVIDIA G-SYNC™, Ansel
+Thermal and Power Specs
+**Maximum GPU Temperature (in C)
+97
+Maximum Graphics Card Power (W)
+75
+Minimum System Power Requirement (W)
+300**
 
 # New issues found in NVIDIA Driver 379.39 (fix on the way) -- Fixed
 
