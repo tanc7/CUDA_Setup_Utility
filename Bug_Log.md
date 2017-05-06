@@ -37,7 +37,9 @@ You must make sure that your linux headers are properly updated. For my test mac
 
 Did not get to have a chance to fix the "bad character problem" for echo -e. But All it does really is...
 
-1. Open a empty file called: /etc/modprobe.d/blacklist-nouveau.conf
-2. Write 3 lines
-3. Updates initramfs
-4. Reboots machine to prepare for the NVIDIA driver installation. 
+    1. Open a empty file called: /etc/modprobe.d/blacklist-nouveau.conf
+    2. Write 3 lines
+    3. Updates initramfs
+    4. Reboots machine to prepare for the NVIDIA driver installation. 
+
+Furthermore, for the GTX 1050 Ti, there is NO need to replace GNOME Desktop, unlike my Geforce 840M Laptop. It could be that since 379.39, because the 10-Series are flagship models they naturally have better driver support. 
