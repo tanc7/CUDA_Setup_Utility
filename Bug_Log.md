@@ -21,9 +21,23 @@ LINE 3: alias nouveau off
 that could easily be represented as
 
 def write_blacklist():
+
   write_file = '/etc/modprobe.d/blacklist-nouveau.conf'
+  
   a = open(write_file,'w')
+  
   a.write('blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off')
+  
   a.close()
+  
   return 
 
+# Second Installation Attempt Succeeded
+You must make sure that your linux headers are properly updated. For my test machine running Kali 2016.2 Linux 4.6.0, it must be dist-upgraded TWICE into Linux kali 4.9.0-kali4-amd64 #1 SMP Debian 4.9.25-1kali1 (2017-05-04) x86_64 GNU/Linux
+
+Did not get to have a chance to fix the "bad character problem" for echo -e. But All it does really is...
+
+1. Open a empty file called: /etc/modprobe.d/blacklist-nouveau.conf
+2. Write 3 lines
+3. Updates initramfs
+4. Reboots machine to prepare for the NVIDIA driver installation. 
