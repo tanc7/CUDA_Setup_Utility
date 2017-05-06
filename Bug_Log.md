@@ -17,3 +17,13 @@ Doesnt work. Why not just make a file to write to? All it does is write 3 lines.
 LINE 1: blacklist nouveau
 LINE 2: options nouveau modeset=0
 LINE 3: alias nouveau off
+
+that could easily be represented as
+
+def write_blacklist():
+  write_file = '/etc/modprobe.d/blacklist-nouveau.conf'
+  a = open(write_file,'w')
+  a.write('blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off')
+  a.close()
+  return 
+
