@@ -46,6 +46,12 @@ Since 2015, Kali has come a long way in making the NVidia Proprietary Drivers in
 In the second to last phase, there is a test-run of two apps, "nvidia-smi" and "hashcat -I" 
 that will list whether or not your video card is recognized. 
 
+Depending on what video card you have, it may or may not entirely break your display.
+
+My GTX 1050 Ti worked entirely fine after my second installation attempt
+
+But my Laptop Geforce 840M has a perma-broken GNOME display, forcing me to switch to XFCE.
+
 ***If it IS RECOGNIZED, but your display is BROKEN, then you are 99% done with your setup***. You must either, fix GNOME desktop, or use a alternative Desktop Manager like LightDM or XFCE.
 
 In fact, even **without a working desktop environment you should be able to run hashcat with GPU acceleration**. 
