@@ -1,4 +1,4 @@
-# New issues found in NVIDIA Driver 379.39.
+# New issues found in NVIDIA Driver 379.39 (fix on the way)
 
 As suspected, a incompatible video card has been detected.
 
