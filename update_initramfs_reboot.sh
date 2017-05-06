@@ -1,0 +1,2 @@
+update-initramfs -u && reboot
+

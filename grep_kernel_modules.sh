@@ -1,0 +1,1 @@
+lsmod |grep -i nouveau

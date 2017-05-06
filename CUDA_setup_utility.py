@@ -15,10 +15,8 @@ def first_reboot_cycle(): #apt-get update and dist-upgrade
     print colored('FIRST reboot cycle: Updating APT and Linux Distro','cyan',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with updating Linux: "))
     if continue_question == "CONTINUE":
-        print colored('[*] Updating APT Repo','yellow',attrs=['bold'])
-        os.system('sudo apt-get update')
-        print colored('[*] Performing Distribution Upgrade, please do not interrupt!','yellow',attrs=['bold'])
-        os.system('sudo apt-get dist-upgrade -y')
+        print colored('[*] Updating APT Repo and installing all upgrades','yellow',attrs=['bold'])
+        os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/update_and_upgrade.sh')
         print colored('[+] Distro Update and Upgrade Completed, please reboot your machine','green',attrs=['bold'])
     elif continue_question == "0" or KeyboardInterrupt:
         main()
@@ -28,17 +26,32 @@ def first_reboot_cycle(): #apt-get update and dist-upgrade
         first_reboot_cycle()
     return
 
+blacklist_file = '/etc/modprobe.d/blacklist-nouveau.conf'
+
+def update_initramfs_reboot():
+    os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/update_initramfs_reboot.sh')
+    print colored('[+] Rebooting System','green',attrs=['bold'])
+
+def write_to_blacklist(blacklist_file):
+    a = open(blacklist_file,'w')
+    a.write("blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off")
+    a.close()
+    update_initramfs_reboot()
+    return blacklist_file
+
 def second_reboot_cycle(): #blacklist Nouveau Kernel Modules, update initramfs, and then reboot
     print colored('SECOND reboot cycle: Blacklisting stock OS Open-Source Drivers','red',attrs=['bold'])
     print colored('[!] Warning! After this reboot, your display will NOT WORK and you will have to rely on running this from the TTY terminals (CTRL + ALT + 1 to 6)','red',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with blacklisting Nouveau and modifying Kernel: "))
     if continue_question == "CONTINUE":
         print colored('[*] Searching for modules that loaded the Nouveau driver','yellow',attrs=['bold'])
-        os.system('lsmod | grep -i nouveau')
+        os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/grep_kernel_modules.sh')
         print colored('[*] Modifying Kernel, blacklisting Nouveau driver','yellow',attrs=['bold'])
-        os.system('echo -e "blacklist nouveau\noptions nouveau modeset=0\nalias nouveau off" > /etc/modprobe.d/blacklist-nouveau.conf')
-        print colored('[+] Rebooting System','green',attrs=['bold'])
-        os.system('update-initramfs -u && reboot')
+        write_to_blacklist(blacklist_file)
+        # # cmd_String = """/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/blacklist_nouveau.sh"""
+        # os.system(cmd_String) # Error ignore bad line taht starts with e? Strange. Changed original fiole command to this one. Still same issue
+        # print colored('[+] Rebooting System','green',attrs=['bold'])
+        # os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/update_initramfs_reboot.sh')
     elif continue_question == "0" or KeyboardInterrupt:
         main()
     else:
@@ -49,14 +62,14 @@ def second_reboot_cycle(): #blacklist Nouveau Kernel Modules, update initramfs, 
 def third_reboot_cycle(): # Install NVidia Drivers, OCL libraries, and CUDA Toolkits
     print colored('THIRD reboot cycle: Installing NVIDIA drivers, OCL Libraries, CUDA Toolkit','yellow',attrs=['bold'])
     print colored('[*] Grepping for any modules running that says nouveau','yellow',attrs=['bold'])
-    os.system('lsmod | grep -i nouveau')
+    os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/grep_kernel_modules.sh')
     print colored('[!] Do you see anything that says Nouveau? If you do, then first kill those processes before proceeding','red',attrs=['bold'])
     continue_question = str(raw_input("Type CONTINUE to proceed with installing NVidia Drivers and required toolkits (check that no Nouveau related mods are loaded): "))
     if continue_question == "CONTINUE":
         print colored('[*] Updating APT Repo Again','yellow',attrs=['bold'])
         os.system('sudo apt-get update')
         print colored('[*] Installing NVidia Drivers, OpenCL Libraries, and NVIDIA CUDA Toolkit','yellow',attrs=['bold'])
-        os.system('sudo apt-get install -y ocl-icd-libopencl1 nvidia-driver nvidia-cuda-toolkit')
+        os.system('/root/ArmsCommander/passwordattacks/CUDA_Setup_Utility/install_cuda_drivers.sh')
         print colored('[+] Installation Complete, please reboot your machine one more time and dont freak out if the GNOME login screen crashes (access me through TTY)','green',attrs=['bold'])
     elif continue_question == "0" or KeyboardInterrupt:
         main()
@@ -86,6 +99,34 @@ def fourth_reboot_cycle(): # Benchmark tests
         fourth_reboot_cycle()
     return
 
+def fifth_reboot_cycle(): # Experimental do not implement until tested!
+    continue_question = str(raw_input(""))
+    if continue_question == "CONTINUE":
+        print colored('Installing XFCE Desktop','green',attrs=['bold'])
+        os.system('apt-get install xfce4') # Replace GNOME with XFCE so it doesnt have the login screen bug
+        print colored('Installing NVIDIA X-Config','green',attrs=['bold'])
+        os.system('apt-get install nvidia-xconfig') # install nvidia-xconfig to manually edit the x11 server
+        print colored('Backing up XOrg Config','green',attrs=['bold'])
+        os.system('mv /etc/x11/xorg.conf /etc/x11/xorg.conf.save') # makes a backup of the original xorg configuration
+        # https://www.blackmoreops.com/2013/10/29/permanently-switch-desktop-environments/
+        print colored('[*] User Interaction Required! Allow NVIDIA X-Config to alter desktop files!','yellow',attrs=['bold'])
+        os.system('nvidia-xconfig') # starts xconfig
+        print colored('[*] User Interaction Required! Please select XFCE for next reboot!','yellow',attrs=['bold'])
+        os.system('update --alternatives --config x-session-manager') # forces open alternative DE menu
+        print colored('Uninstalling buggy Light-Locker','green',attrs=['bold'])
+
+        os.system('apt-get autoremove --purge light-locker') # Fixes the black screen issue by purging lightlocker and replacing it with gnome screensaver
+        print colored('Installing GNOME-Screensaver as replacement','green',attrs=['bold'])
+
+        os.system('apt-get install gnome-screensaver')
+        print colored('[+] DONE! Restart your machine and pray it works!','green',attrs=['bold'])
+    elif continue_question == "0" or KeyboardInterrupt:
+        main()
+    else:
+        print colored('[-] Type CONTINUE to proceed! Or type "0" to return to Main Menu','red',attrs=['bold'])
+        fifth_reboot_cycle()
+
+
 def problem_one():
     print """
     Example Photo: https://unix.stackexchange.com/questions/292308/archgnome-oh-no-something-has-gone-wrong
@@ -107,6 +148,7 @@ def problem_one():
     3. (RECOMMENDED) Modify/Move/Delete your Display Settings /etc/X11/xorg.conf file with: "mv /etc/X11/xorg.conf /etc/X11/xorg.conf.save"
     4. (LAST RESORT) Use the APT repo to download and run nvidia-xconfig to generate a new X-Config File (Display File)
     5. (LAST RESORT) Setting autologin as root to TRUE by editing the file with: "nano /etc/gdm3/daemon.conf"
+    6. Attempt to download the Linux Kernel Modules 4.9 for Kali Linux and try it again
 
     Since the matter is so complex between each system and hardware, I decided not to make a autoinstaller
     Whatever works for me, may not work for you. It may break your own system
@@ -235,7 +277,8 @@ def main():
         '#4. FOURTH-REBOOT CYCLE, Benchmark tests. Run this in your TTY prompt if you have issues like Sad Computer on White Screen for GNOME Desktop Manager',
         '#5. FINAL PART, Install hashcat-utils automatically from github after everything is working including desktop',
         '#DIAGNOSTICS. Troubleshoot a failed installation attempt or display errors',
-        '#REVERT. Revert the changes that were made and reinstall Open Source Drivers, erasing all of the effort you have done to this point'
+        '#REVERT. Revert the changes that were made and reinstall Open Source Drivers, erasing all of the effort you have done to this point',
+        '#TEST. Test Reboot Module #5, the auto-configure to fix display problems'
     ]
 
     print ("\n\t".join(opt_List))
@@ -262,6 +305,9 @@ def main():
     elif opt_Choice == "5":
         os.system('clear')
         install_hashcat_utils()
+    elif opt_Choice == "TEST":
+        os.system('clear')
+        fifth_reboot_cycle()
     elif opt_Choice == "DIAGNOSTICS":
         os.system('clear')
         DIAGNOSTICS()
