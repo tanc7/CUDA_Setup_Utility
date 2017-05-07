@@ -138,3 +138,22 @@ Did not get to have a chance to fix the "bad character problem" for echo -e. But
     4. Reboots machine to prepare for the NVIDIA driver installation. 
 
 Furthermore, for the GTX 1050 Ti, there is NO need to replace GNOME Desktop, unlike my Geforce 840M Laptop. It could be that since patch 379.39, because the 10-Series are flagship models they naturally have better driver support. 
+
+# New Discovery, the 10-Series GTX graphics cards cannot be custom-set for GPU and memory clock rates.
+
+At least for the Geforce GTX 1050 Ti Series. 
+
+        Persistence mode is already Enabled for GPU 0000:01:00.0.
+        All done.
+        ECC features not supported for GPU 0000:01:00.0.
+        Treating as warning and moving on.
+        All done.
+        Setting applications clocks is not supported for GPU 0000:01:00.0.
+        Treating as warning and moving on.
+        All done.
+        Changing auto boosted clocks permissions is not supported for GPU: 0000:01:00.0.
+        Treating as warning and moving on.
+        All done.
+        Enabling/disabling default auto boosted clocks is not supported for GPU: 0000:01:00.0.
+        Treating as warning and moving on.
+        All done.
